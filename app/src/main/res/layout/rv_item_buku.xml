@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp"
+    android:layout_marginBottom="16dp"
+    >
+
+    <ImageView
+        android:id="@+id/iv_buku"
+        android:layout_width="60dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        app:layout_constraintVertical_bias="0.001" />
+
+    <TextView
+        android:id="@+id/tv_buku"
+        style="@style/TextAppearance.MaterialComponents.Headline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Buku :"
+        android:textColor="@color/text"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/iv_buku"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_kategori"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:text="Kategori:"
+        android:textColor="@color/text"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/iv_buku"
+        app:layout_constraintTop_toTopOf="@+id/tv_buku" />
+</androidx.constraintlayout.widget.ConstraintLayout>
