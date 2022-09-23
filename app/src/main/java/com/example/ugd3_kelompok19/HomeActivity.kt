@@ -2,17 +2,13 @@ package com.example.ugd3_kelompok19
 
 
 
-import android.content.DialogInterface
 import com.example.ugd3_kelompok19.databinding.ActivityHomeBinding
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
-import android.view.MenuItem
-import androidx.appcompat.app.AlertDialog
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.RecyclerView
 
 class HomeActivity : AppCompatActivity() {
 
@@ -28,7 +24,7 @@ class HomeActivity : AppCompatActivity() {
         val booksFragment = BooksFragment()
         val collectionsFragment = CollectionsFragment()
         val profilFragment = ProfilFragment()
-        val wishlistFragment = WishlistFragment()
+        val peminjamFragment = PeminjamFragment()
 
         setThatFragments(booksFragment)
 
@@ -41,7 +37,7 @@ class HomeActivity : AppCompatActivity() {
                     setThatFragments(collectionsFragment)
                 }
                 R.id.nav_wishlist->{
-                    setThatFragments(wishlistFragment)
+                    setThatFragments(peminjamFragment)
                 }
                 R.id.nav_profil->{
                     setThatFragments(profilFragment)

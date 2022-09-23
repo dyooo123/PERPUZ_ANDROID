@@ -3,12 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/KULIAH/Semester 5/UGD3_Kelompok19/app/src/main/res/layout/activity_home.xml" value="0.25416666666666665" />
+        <entry key="..\:/KULIAH/Semester 5/UGD3_Kelompok19/app/src/main/res/layout/activity_home.xml" value="0.264" />
+        <entry key="..\:/KULIAH/Semester 5/UGD3_Kelompok19/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/KULIAH/Semester 5/UGD3_Kelompok19/app/src/main/res/layout/activity_register.xml" value="0.25416666666666665" />
         <entry key="..\:/KULIAH/Semester 5/UGD3_Kelompok19/app/src/main/res/layout/activity_splash_screen.xml" value="0.25384615384615383" />
+        <entry key="..\:/KULIAH/Semester 5/UGD3_Kelompok19/app/src/main/res/layout/fragment_books.xml" value="0.25416666666666665" />
         <entry key="..\:/KULIAH/Semester 5/UGD3_Kelompok19/app/src/main/res/layout/fragment_collections.xml" value="0.25416666666666665" />
         <entry key="..\:/KULIAH/Semester 5/UGD3_Kelompok19/app/src/main/res/layout/fragment_profil.xml" value="0.25416666666666665" />
         <entry key="..\:/KULIAH/Semester 5/UGD3_Kelompok19/app/src/main/res/layout/fragment_wishlist.xml" value="0.25416666666666665" />
+        <entry key="..\:/KULIAH/Semester 5/UGD3_Kelompok19/app/src/main/res/layout/peminjam_fragment.xml" value="0.23981481481481481" />
+        <entry key="..\:/KULIAH/Semester 5/UGD3_Kelompok19/app/src/main/res/layout/rv_item_buku.xml" value="0.25416666666666665" />
+        <entry key="..\:/KULIAH/Semester 5/UGD3_Kelompok19/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>

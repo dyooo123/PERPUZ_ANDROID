@@ -8,13 +8,30 @@
     tools:context=".BooksFragment"
     android:background="@color/background">
 
+    <TextView
+        android:id="@+id/textMyProfil"
+        style="@style/TextAppearance.MaterialComponents.Headline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:text="Books"
+        android:textColor="@color/text"
+        android:textStyle="bold"
+        android:layout_marginLeft="156dp"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_buku"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
         android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@id/textMyProfil"
+        app:layout_constraintStart_toEndOf="@id/textMyProfil"
+        app:layout_constraintStart_toStartOf="@id/textMyProfil"
+        app:layout_constraintTop_toBottomOf="@id/textMyProfil"
         tools:listitem="@layout/rv_item_buku"
+
         />
 
 </FrameLayout>
