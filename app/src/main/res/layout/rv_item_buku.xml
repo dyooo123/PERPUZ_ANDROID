@@ -39,7 +39,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:text="Kategori:"
-        android:textColor="@color/text"
+        android:textColor="@color/softYellow"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/iv_buku"
         app:layout_constraintTop_toTopOf="@+id/tv_buku" />

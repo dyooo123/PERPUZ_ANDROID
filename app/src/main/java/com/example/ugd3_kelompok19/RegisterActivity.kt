@@ -10,6 +10,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.ugd3_kelompok19.databinding.ActivityRegisterBinding
 import com.example.ugd3_kelompok19.room.User
 import com.example.ugd3_kelompok19.room.UserDB
+import com.example.ugd3_kelompok19.room.UserDao
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.android.material.snackbar.Snackbar
@@ -28,9 +29,6 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var registerLayout: ConstraintLayout
     private lateinit var binding: ActivityRegisterBinding
 
-    private var userId: Int = 0
-
-    val db by lazy{ UserDB(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +37,10 @@ class RegisterActivity : AppCompatActivity() {
         val viewBinding = binding.root
         setContentView(viewBinding)
         var checkLogin = true
+
+        var userId: Int = 0
+        val db by lazy{ UserDB(this) }
+        val userDao = db.userDao()
 
         binding.btnRegister.setOnClickListener(View.OnClickListener  {
             val mBundle = Bundle()
@@ -79,30 +81,18 @@ class RegisterActivity : AppCompatActivity() {
                 checkLogin = true
             }
 
-
-
             if(checkLogin==true) {
+
+                val user = User(0, username, email, password, tanggalLahir, noTelp)
+                userDao.addUser(user)
+
                 val moveRegister = Intent(this@RegisterActivity, MainActivity::class.java)
                 mBundle.putString("Username",binding.inputLayoutUsername.getEditText()?.getText().toString())
                 mBundle.putString("Password",binding.inputLayoutPassword.getEditText()?.getText().toString())
                 moveRegister.putExtra("register", mBundle)
                 startActivity(moveRegister)
-
             }
             if (!checkLogin) return@OnClickListener
-
-
-            CoroutineScope(Dispatchers.IO).launch {
-                run {
-                    db.userDao().addUser(
-                        User(0, username, password, email, tanggalLahir, noTelp)
-                    )
-                    finish()
-                }
-            }
-            intent.putExtra("register", mBundle)
-            intent.putExtra("intent_id", 0)
-            startActivity(intent)
         })
 
             binding.btnReset.setOnClickListener{

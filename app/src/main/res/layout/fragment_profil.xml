@@ -12,14 +12,13 @@
         style="@style/TextAppearance.MaterialComponents.Headline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
         android:text="My Profile"
+        android:textColor="@color/softYellow"
         android:textStyle="bold"
-        android:textColor="@color/text"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -48,103 +47,112 @@
         app:layout_constraintTop_toBottomOf="@id/imageView2">
 
         <TextView
-            android:id="@+id/fullName"
+            android:id="@+id/tv_username"
             style="@style/TextAppearance.MaterialComponents.Headline6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nama Lengkap"
-            android:textColor="@color/black"
+            android:text="Username"
+            android:textColor="@color/text"
+            android:layout_marginStart="16dp"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imageView2" />
 
         <TextView
-            android:id="@+id/viewfullName"
+            android:id="@+id/view_username"
             style="@style/TextAppearance.MaterialComponents.Caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
-            android:padding="12dp"
-            android:text="Full Name"
-            android:textColor="@color/black"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="0dp"
+            android:padding="16dp"
+            android:text="Username"
+            android:textColor="@color/softYellow"
             android:textSize="15dp"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fullName" />
+            app:layout_constraintTop_toBottomOf="@id/tv_username" />
 
         <TextView
-            android:id="@+id/username"
+            android:id="@+id/tv_email"
             style="@style/TextAppearance.MaterialComponents.Headline6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Username"
-            android:textColor="@color/black"
+            android:text="Email"
+            android:layout_marginStart="16dp"
+            android:textColor="@color/text"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/viewfullName" />
+            app:layout_constraintTop_toBottomOf="@id/view_username" />
 
         <TextView
-            android:id="@+id/viewUsername"
+            android:id="@+id/view_email"
             style="@style/TextAppearance.MaterialComponents.Caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
-            android:padding="12dp"
-            android:text="Username"
-            android:textColor="@color/black"
+            android:padding="16dp"
+            android:layout_marginStart="2dp"
+            android:text="Email"
+            android:textColor="@color/softYellow"
             android:textSize="15dp"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/username" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_email" />
 
         <TextView
-            android:id="@+id/email"
+            android:id="@+id/tv_tanggalLahir"
             style="@style/TextAppearance.MaterialComponents.Headline6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Email"
-            android:textColor="@color/black"
+            android:layout_marginStart="16dp"
+            android:text="Tanggal Lahir"
+            android:textColor="@color/text"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/viewUsername" />
+            app:layout_constraintTop_toBottomOf="@id/view_email" />
 
         <TextView
-            android:id="@+id/viewEmail"
+            android:id="@+id/viewTanggalLahir"
             style="@style/TextAppearance.MaterialComponents.Caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
-            android:padding="12dp"
-            android:text="Email"
-            android:textColor="@color/black"
+            android:padding="16dp"
+            android:layout_marginStart="2dp"
+            android:text="Tanggal Lahir"
+            android:textColor="@color/softYellow"
             android:textSize="15dp"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/email" />
+            app:layout_constraintTop_toBottomOf="@id/tv_tanggalLahir" />
 
         <TextView
-            android:id="@+id/PhoneNum"
+            android:id="@+id/tv_noTelp"
             style="@style/TextAppearance.MaterialComponents.Headline6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No Telp"
-            android:textColor="@color/black"
+            android:text="No Telpon"
+            android:textColor="@color/text"
+            android:layout_marginStart="16dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/viewEmail" />
+            app:layout_constraintTop_toBottomOf="@id/viewTanggalLahir" />
 
         <TextView
-            android:id="@+id/viewPhone"
+            android:id="@+id/viewNoTelp"
             style="@style/TextAppearance.MaterialComponents.Caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
-            android:padding="12dp"
+            android:padding="16dp"
             android:text="No Telp"
-            android:textColor="@color/black"
+            android:layout_marginStart="2dp"
+            android:textColor="@color/softYellow"
+            android:layout_marginBottom="16dp"
             android:textSize="15dp"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/PhoneNum" />
+            app:layout_constraintTop_toBottomOf="@id/tv_noTelp" />
 
     </LinearLayout>
 
@@ -162,12 +170,12 @@
             android:id="@+id/btnUpdate"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/softYellow"
             android:text="Update"
-            android:backgroundTint="@color/text"
-            android:textColor="@color/black"/>
+            android:textColor="@color/darkBlue" />
     </LinearLayout>
 
     <LinearLayout
@@ -187,11 +195,21 @@
             android:text="Logout"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:backgroundTint="@color/black"
-            android:textColor="@color/white"/>
+            android:backgroundTint="@color/softYellow"
+            android:textColor="@color/red"/>
 
     </LinearLayout>
 
+    <androidx.fragment.app.FragmentContainerView
+
+        android:id="@+id/layoutProfile"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,11 +1,14 @@
 package com.example.ugd3_kelompok19
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.ugd3_kelompok19.room.UserDB
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 
@@ -17,9 +20,13 @@ class MainActivity : AppCompatActivity() {
     var tempUsername : String = "admin"
     var tempPass : String = "admin"
 
+    private lateinit var sharedPreferences: SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE)
 
         val isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE)
             .getBoolean("isFirstRun", true)
@@ -67,6 +74,14 @@ class MainActivity : AppCompatActivity() {
 
             if (username == "admin" && password == "admin" || (username == tempUsername && password == tempPass)){
                 checkLogin = true
+                val db by lazy { UserDB(this@MainActivity) }
+                val userDao = db.userDao()
+                val user = userDao.checkUser(username,password)
+                if(user !=null){
+                    sharedPreferences.edit()
+                        .putInt("id",user.id)
+                        .apply()
+                }
 
                 Snackbar.make(mainLayout, "Berhasil Login", Snackbar.LENGTH_LONG).show()
 
@@ -77,6 +92,8 @@ class MainActivity : AppCompatActivity() {
 
             }
             if (!checkLogin) return@OnClickListener
+
+
 
         })
 

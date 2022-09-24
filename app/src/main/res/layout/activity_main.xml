@@ -90,8 +90,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Login"
-            android:backgroundTint="@color/backcolor"
-            android:textColor="@color/text"/>
+            android:backgroundTint="@color/softYellow"
+            android:textColor="@color/darkBlue"/>
 
     </LinearLayout>
 
@@ -107,9 +107,9 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:backgroundTint="@color/backcolor"
+            android:backgroundTint="@color/softYellow"
             android:text="Sign Up!"
-            android:textColor="@color/text"
+            android:textColor="@color/darkBlue"
             />
 
     </LinearLayout>

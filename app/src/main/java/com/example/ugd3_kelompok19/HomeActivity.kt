@@ -2,6 +2,8 @@ package com.example.ugd3_kelompok19
 
 
 
+import android.content.Context
+import android.content.SharedPreferences
 import com.example.ugd3_kelompok19.databinding.ActivityHomeBinding
 import android.os.Bundle
 import android.view.Menu
@@ -11,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 
 class HomeActivity : AppCompatActivity() {
+    private lateinit var sharedPreferences: SharedPreferences
 
     private lateinit var binding: ActivityHomeBinding
 
@@ -18,6 +21,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
+        sharedPreferences = getSharedPreferences("login",Context.MODE_PRIVATE)
 
         getSupportActionBar()?.hide()
         var bottomNavigationView: BottomNavigationView = findViewById(R.id.nav_view)
@@ -61,6 +65,9 @@ class HomeActivity : AppCompatActivity() {
         return true
     }
 
+    fun getSharedPreferences(): SharedPreferences? {
+        return sharedPreferences
+    }
 
 
 }
