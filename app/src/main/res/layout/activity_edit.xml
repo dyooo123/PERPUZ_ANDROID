@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/darkBlue"
+    tools:context=".EditActivity">
+
+    <EditText
+        android:id="@+id/edit_namaPeminjam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:hint="Nama Peminjam"
+        android:minHeight="48dp"
+        android:layout_marginStart="16dp"
+        android:background="@color/softBlue"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+
+    <EditText
+        android:id="@+id/edit_alamat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Alamat"
+        android:minLines="2"
+        android:background="@color/softBlue"
+        app:layout_goneMarginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_namaPeminjam"
+        android:layout_marginTop="20dp"
+        android:gravity="top"
+        />
+
+    <EditText
+        android:id="@+id/edit_judulBuku"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Judul Buku"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/softBlue"
+        android:minHeight="48dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_alamat"
+        />
+
+    <EditText
+        android:id="@+id/edit_tanggalPinjam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/softBlue"
+        android:textColor="@color/darkBlue"
+        android:hint="Tanggal Peminjaman Buku"
+        android:layout_marginTop="20dp"
+        android:minHeight="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_judulBuku"
+        />
+
+    <EditText
+        android:id="@+id/edit_tanggalKembali"
+        android:layout_width="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="17dp"
+        android:hint="Tanggal Pengembalian Buku"
+        android:background="@color/softBlue"
+        android:layout_marginTop="20dp"
+        android:minHeight="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_tanggalPinjam"
+        />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="SAVE"
+        android:backgroundTint="@color/softYellow"
+        android:textColor="@color/darkBlue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_tanggalKembali"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        />
+
+    <Button
+        android:id="@+id/btnUpdate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="UPDATE"
+        android:backgroundTint="@color/softYellow"
+        android:textColor="@color/darkBlue"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSave"
+        android:layout_marginTop="20dp"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

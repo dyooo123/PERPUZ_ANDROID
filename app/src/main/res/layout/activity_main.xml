@@ -60,7 +60,7 @@
             app:passwordToggleEnabled="true"
             app:startIconDrawable="@drawable/ic_lock"
             android:layout_marginTop="16dp"
-            app:helperText="Doesn't Have account? Sign Up!">
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"

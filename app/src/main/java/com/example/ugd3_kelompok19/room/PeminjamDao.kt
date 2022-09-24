@@ -13,9 +13,9 @@ interface PeminjamDao {
     @Delete
     suspend fun deletePeminjam(peminjam: Peminjam)
 
-    //@Query("SELECT * FROM peminjam")
-   // suspend fun getPeminjam(id_peminjam: Int): List<Peminjam>
+    @Query("SELECT * FROM peminjam")
+    suspend fun getPeminjams(): List<Peminjam>
 
-   // @Query("SELECT * FROM peminjam WHERE id =:id_peminjam")
-    //suspend fun getPeminjamById(id_peminjam: Int): List<Peminjam>
+    @Query("SELECT * FROM peminjam WHERE id =:id_peminjam")
+    suspend fun getPeminjam(id_peminjam: Int): List<Peminjam>
 }

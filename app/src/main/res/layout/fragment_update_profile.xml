@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@color/darkBlue"
     tools:context=".ProfilFragment">
 
     <TextView
@@ -59,7 +59,7 @@
             app:layout_constraintTop_toBottomOf="@id/imageView2" />
 
         <EditText
-            android:id="@+id/view_username"
+            android:id="@+id/tiet_username"
             style="@style/TextAppearance.MaterialComponents.Caption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -68,7 +68,6 @@
             android:layout_marginEnd="16dp"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="16dp"
-            android:text="Username"
             android:textColor="@color/softYellow"
             android:textSize="15dp"
             app:layout_constraintHorizontal_bias="0.0"
@@ -85,17 +84,16 @@
             android:layout_marginStart="16dp"
             android:textColor="@color/text"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/view_username" />
+            app:layout_constraintTop_toBottomOf="@id/tiet_username" />
 
         <EditText
-            android:id="@+id/view_email"
+            android:id="@+id/tiet_email"
             style="@style/TextAppearance.MaterialComponents.Caption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
-            android:text="Email"
             android:layout_marginBottom="16dp"
             android:textColor="@color/softYellow"
             android:textSize="15dp"
@@ -113,17 +111,16 @@
             android:text="Tanggal Lahir"
             android:textColor="@color/text"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/view_email" />
+            app:layout_constraintTop_toBottomOf="@id/tiet_email" />
 
         <EditText
-            android:id="@+id/viewTanggalLahir"
+            android:id="@+id/tiet_TanggalLahir"
             style="@style/TextAppearance.MaterialComponents.Caption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginLeft="12dp"
-            android:text="Tanggal Lahir"
             android:textColor="@color/softYellow"
             android:layout_marginBottom="16dp"
             android:textSize="15dp"
@@ -140,14 +137,13 @@
             android:textColor="@color/text"
             android:layout_marginStart="16dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/viewTanggalLahir" />
+            app:layout_constraintTop_toBottomOf="@id/tiet_TanggalLahir" />
 
         <EditText
-            android:id="@+id/viewNoTelp"
+            android:id="@+id/tiet_NoTelp"
             style="@style/TextAppearance.MaterialComponents.Caption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="No Telp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:textColor="@color/softYellow"
@@ -181,6 +177,16 @@
             android:textColor="@color/darkBlue" />
     </LinearLayout>
 
+    <androidx.fragment.app.FragmentContainerView
+
+        android:id="@+id/layoutUpdateProfile"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
