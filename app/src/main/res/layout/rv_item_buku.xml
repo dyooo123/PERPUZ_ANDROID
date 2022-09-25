@@ -9,6 +9,7 @@
     android:layout_marginBottom="16dp"
     >
 
+
     <ImageView
         android:id="@+id/iv_buku"
         android:layout_width="60dp"
@@ -43,4 +44,18 @@
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/iv_buku"
         app:layout_constraintTop_toTopOf="@+id/tv_buku" />
+
+    <Button
+        android:id="@+id/btnRead"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/softYellow"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:text="Read"
+        android:textColor="@color/darkBlue"
+        app:layout_constraintStart_toEndOf="@id/iv_buku"
+        app:layout_constraintTop_toTopOf="@id/tv_kategori"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

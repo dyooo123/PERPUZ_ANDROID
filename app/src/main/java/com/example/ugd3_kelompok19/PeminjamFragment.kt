@@ -30,6 +30,4 @@ class PeminjamFragment : Fragment() {
             startActivity(movePeminjam)
         })
     }
-
-
 }

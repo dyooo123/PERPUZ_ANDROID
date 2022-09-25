@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:backgroundTint="@color/softYellow"
-        android:text="Tambah data Peminjam Buku"
+        android:text="Peminjam Buku"
         android:textColor="@color/darkBlue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

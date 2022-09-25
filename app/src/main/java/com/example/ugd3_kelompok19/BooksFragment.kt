@@ -1,9 +1,11 @@
 package com.example.ugd3_kelompok19
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ugd3_kelompok19.RVBukuAdapter
 import com.example.ugd3_kelompok19.entity.Buku
+import kotlinx.android.synthetic.main.rv_item_buku.*
 
 class BooksFragment : Fragment() {
 
@@ -35,6 +38,8 @@ class BooksFragment : Fragment() {
         rvBuku.setHasFixedSize(true)
 
         rvBuku.adapter = adapter
+
+
 
     }
 }

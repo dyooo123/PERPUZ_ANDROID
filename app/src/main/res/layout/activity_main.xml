@@ -108,7 +108,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:backgroundTint="@color/softYellow"
-            android:text="Sign Up!"
+            android:text="Register"
             android:textColor="@color/darkBlue"
             />
 

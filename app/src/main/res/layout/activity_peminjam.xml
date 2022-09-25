@@ -21,7 +21,7 @@
         android:id="@+id/button_create"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Tambah data Peminjam Buku"
+        android:text="Tambah Peminjam Buku"
         android:backgroundTint="@color/softYellow"
         android:textColor="@color/darkBlue"
         app:layout_constraintStart_toStartOf="parent"
