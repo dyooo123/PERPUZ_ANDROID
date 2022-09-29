@@ -11,15 +11,79 @@ import kotlinx.android.synthetic.main.peminjam_fragment.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.os.Build
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import com.example.ugd3_kelompok19.databinding.ActivityEditBinding
+
 
 class EditActivity : AppCompatActivity() {
     val db by lazy { PeminjamDB(this) }
     private var peminjamId : Int = 0
+    private var binding: ActivityEditBinding? = null
+    private val PEMINJAM_ID_1 = "peminjam_notification_01"
+    private val notificationId2 = 102
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_edit)
+
+
+        binding = ActivityEditBinding.inflate(layoutInflater)
+        setContentView(binding!!.root)
+
         setupView()
         setupListener()
+
+    }
+
+    private fun createNotificationChannels() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "Notification Title"
+            val descriptionText = "Notification Description"
+
+            val channel1 = NotificationChannel(
+                PEMINJAM_ID_1,
+                name,
+                NotificationManager.IMPORTANCE_DEFAULT
+            ).apply {
+                description = descriptionText
+            }
+
+
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel1)
+        }
+    }
+
+    private fun sendNotifications() {
+        val builder = NotificationCompat.Builder(this,PEMINJAM_ID_1)
+            .setSmallIcon(R.drawable.ic_person)
+            .setPriority(NotificationCompat.PRIORITY_LOW)
+            .setColor(Color.BLUE)
+            .setContentTitle("Peminjam Buku")
+            .setContentText("Data Peminjam Buku PERPUZ")
+            .setStyle(
+                NotificationCompat.InboxStyle()
+                    .addLine("Nama Peminjam : "+ binding?.editNamaPeminjam?.text.toString())
+                    .addLine("Alamat : "+ binding?.editAlamat?.text.toString())
+                    .addLine("Judul Buku : "+ binding?.editJudulBuku?.text.toString())
+                    .addLine("Tanggal Pinjam : "+ binding?.editTanggalPinjam?.text.toString())
+                    .addLine("Tanggal Kembali : "+ binding?.editTanggalKembali?.text.toString())
+            )
+
+
+        with(NotificationManagerCompat.from(this)) {
+            notify(notificationId2, builder.build())
+        }
     }
 
     fun setupView() {
@@ -52,8 +116,11 @@ class EditActivity : AppCompatActivity() {
                         edit_tanggalKembali.text.toString()
                     )
                 )
+                createNotificationChannels()
+                sendNotifications()
                 finish()
             }
+
         }
         btnUpdate.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
