@@ -23,6 +23,8 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
 import androidx.core.app.NotificationCompat
@@ -52,17 +54,18 @@ class RegisterActivity : AppCompatActivity() {
 
 
         var userId: Int = 0
-        val db by lazy{ UserDB(this) }
+        val db by lazy { UserDB(this) }
         val userDao = db.userDao()
 
-        binding.btnRegister.setOnClickListener(View.OnClickListener  {
+        binding.btnRegister.setOnClickListener(View.OnClickListener {
             val mBundle = Bundle()
-            val intent = Intent (this@RegisterActivity, MainActivity::class.java)
+            val intent = Intent(this@RegisterActivity, MainActivity::class.java)
 
             val username: String = binding.inputLayoutUsername.getEditText()?.getText().toString()
             val password: String = binding.inputLayoutPassword.getEditText()?.getText().toString()
             val email: String = binding.inputLayoutEmail.getEditText()?.getText().toString()
-            val tanggalLahir: String = binding.inputLayoutTanggalLahir.getEditText()?.getText().toString()
+            val tanggalLahir: String =
+                binding.inputLayoutTanggalLahir.getEditText()?.getText().toString()
             val noTelp: String = binding.inputLayoutNoTelp.getEditText()?.getText().toString()
 
             if (username.isEmpty()) {
@@ -90,18 +93,24 @@ class RegisterActivity : AppCompatActivity() {
                 checkLogin = false
             }
 
-            if(!username.isEmpty() && !password.isEmpty() && !email.isEmpty() && !tanggalLahir.isEmpty() && !noTelp.isEmpty()){
+            if (!username.isEmpty() && !password.isEmpty() && !email.isEmpty() && !tanggalLahir.isEmpty() && !noTelp.isEmpty()) {
                 checkLogin = true
             }
 
-            if(checkLogin==true) {
+            if (checkLogin == true) {
 
                 val user = User(0, username, email, password, tanggalLahir, noTelp)
                 userDao.addUser(user)
 
                 val moveRegister = Intent(this@RegisterActivity, MainActivity::class.java)
-                mBundle.putString("Username",binding.inputLayoutUsername.getEditText()?.getText().toString())
-                mBundle.putString("Password",binding.inputLayoutPassword.getEditText()?.getText().toString())
+                mBundle.putString(
+                    "Username",
+                    binding.inputLayoutUsername.getEditText()?.getText().toString()
+                )
+                mBundle.putString(
+                    "Password",
+                    binding.inputLayoutPassword.getEditText()?.getText().toString()
+                )
                 moveRegister.putExtra("register", mBundle)
                 startActivity(moveRegister)
                 binding1 = ActivityRegisterBinding.inflate(layoutInflater)
@@ -114,24 +123,24 @@ class RegisterActivity : AppCompatActivity() {
             if (!checkLogin) return@OnClickListener
         })
 
-            binding.btnReset.setOnClickListener{
-                binding.inputLayoutUsername.editText?.setText("")
-                binding.inputLayoutPassword.editText?.setText("")
-                binding.inputLayoutEmail.editText?.setText("")
-                binding.inputLayoutNoTelp.editText?.setText("")
-                binding.inputLayoutTanggalLahir.editText?.setText("")
+        binding.btnReset.setOnClickListener {
+            binding.inputLayoutUsername.editText?.setText("")
+            binding.inputLayoutPassword.editText?.setText("")
+            binding.inputLayoutEmail.editText?.setText("")
+            binding.inputLayoutNoTelp.editText?.setText("")
+            binding.inputLayoutTanggalLahir.editText?.setText("")
 
-                binding.inputLayoutUsername.setError("")
-                binding.inputLayoutPassword.setError("")
-                binding.inputLayoutEmail.setError("")
-                binding.inputLayoutNoTelp.setError("")
-                binding.inputLayoutTanggalLahir.setError("")
+            binding.inputLayoutUsername.setError("")
+            binding.inputLayoutPassword.setError("")
+            binding.inputLayoutEmail.setError("")
+            binding.inputLayoutNoTelp.setError("")
+            binding.inputLayoutTanggalLahir.setError("")
 
-            }
-
+        }
 
 
     }
+
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = "Notification Title"
@@ -157,16 +166,26 @@ class RegisterActivity : AppCompatActivity() {
         val intent: Intent = Intent(this, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
-
-
+        val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
+        val broadcastIntent: Intent = Intent(this, NotificationReceiver::class.java)
+        broadcastIntent.putExtra("toastMessage","Hello! "+binding.inputLayoutUsername.editText?.text.toString())
+        val actionIntent = PendingIntent.getBroadcast(this, 0, broadcastIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val picture = BitmapFactory.decodeResource(resources, R.drawable.logo)
         val builder = NotificationCompat.Builder(this, REGISTER_ID_01)
-            .setSmallIcon(R.drawable.ic_baseline_notifications_24)
-            .setContentTitle("Registrasi")
-            .setContentText("Registrasi telah berhasil.")
+            .setSmallIcon(R.drawable.logo)
+            .setContentText("Berhasil Register")
+            .setLargeIcon(picture)
+            .setStyle(
+                NotificationCompat.BigPictureStyle()
+                    .bigLargeIcon(null)
+                    .bigPicture(picture)
+            )
             .setCategory(NotificationCompat.CATEGORY_MESSAGE)
-            .setColor(Color.BLUE)
+            .setColor(Color.RED)
             .setAutoCancel(true)
             .setOnlyAlertOnce(true)
+            .setContentIntent(pendingIntent)
+            .addAction(R.mipmap.ic_launcher, "Pesan", actionIntent)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
         with(NotificationManagerCompat.from(this)) {
