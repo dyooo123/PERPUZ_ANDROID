@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.ugd3_kelompok19.databinding.ActivityMainBinding
 import com.example.ugd3_kelompok19.databinding.ActivityRegisterBinding
 import com.example.ugd3_kelompok19.room.User
 import com.example.ugd3_kelompok19.room.UserDB
@@ -18,6 +19,14 @@ import kotlinx.android.synthetic.main.fragment_profil.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
+import android.graphics.Color
+import android.os.Build
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var inputusername: TextInputLayout
@@ -28,6 +37,9 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var btnRegister: Button
     private lateinit var registerLayout: ConstraintLayout
     private lateinit var binding: ActivityRegisterBinding
+    private var binding1: ActivityRegisterBinding? = null
+    private val REGISTER_ID_01 = "register_notification"
+    private val notificationId1 = 101
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +49,7 @@ class RegisterActivity : AppCompatActivity() {
         val viewBinding = binding.root
         setContentView(viewBinding)
         var checkLogin = true
+
 
         var userId: Int = 0
         val db by lazy{ UserDB(this) }
@@ -91,6 +104,12 @@ class RegisterActivity : AppCompatActivity() {
                 mBundle.putString("Password",binding.inputLayoutPassword.getEditText()?.getText().toString())
                 moveRegister.putExtra("register", mBundle)
                 startActivity(moveRegister)
+                binding1 = ActivityRegisterBinding.inflate(layoutInflater)
+                setContentView(binding1!!.root)
+
+                createNotificationChannel()
+                sendNotification()
+
             }
             if (!checkLogin) return@OnClickListener
         })
@@ -110,8 +129,48 @@ class RegisterActivity : AppCompatActivity() {
 
             }
 
+
+
+    }
+    private fun createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "Notification Title"
+            val descriptionText = "Notification Description"
+
+            val channel1 = NotificationChannel(
+                REGISTER_ID_01,
+                name,
+                NotificationManager.IMPORTANCE_DEFAULT
+            ).apply {
+                description = descriptionText
+            }
+
+
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel1)
+        }
     }
 
+    private fun sendNotification() {
+
+        val intent: Intent = Intent(this, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
 
 
+        val builder = NotificationCompat.Builder(this, REGISTER_ID_01)
+            .setSmallIcon(R.drawable.ic_baseline_notifications_24)
+            .setContentTitle("Registrasi")
+            .setContentText("Registrasi telah berhasil.")
+            .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+            .setColor(Color.BLUE)
+            .setAutoCancel(true)
+            .setOnlyAlertOnce(true)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+        with(NotificationManagerCompat.from(this)) {
+            notify(notificationId1, builder.build())
+        }
+    }
 }

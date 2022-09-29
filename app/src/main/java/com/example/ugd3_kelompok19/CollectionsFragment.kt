@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.example.ugd3_kelompok19.databinding.FragmentCollectionsBinding
 
+
 class CollectionsFragment : Fragment() {
 
     override fun onCreateView(

@@ -11,14 +11,22 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.ugd3_kelompok19.room.UserDB
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.graphics.Color
+import android.os.Build
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import com.example.ugd3_kelompok19.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var inputUsername: TextInputLayout
     private lateinit var inputPassword: TextInputLayout
     private lateinit var mainLayout: ConstraintLayout
-    var mBundle : Bundle? = null
-    var tempUsername : String = "admin"
-    var tempPass : String = "admin"
+    var mBundle: Bundle? = null
+    var tempUsername: String = "admin"
+    var tempPass: String = "admin"
 
     private lateinit var sharedPreferences: SharedPreferences
 
@@ -30,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
         val isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE)
             .getBoolean("isFirstRun", true)
-        if(isFirstRun) {
+        if (isFirstRun) {
             startActivity(Intent(this@MainActivity, SplashScreen::class.java))
             finish()
         }
@@ -43,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         val btnRegister: Button = findViewById(R.id.btnRegister)
         val btnLogin: Button = findViewById(R.id.btnLogin)
 
-        if(intent.getBundleExtra("register")!=null){
+        if (intent.getBundleExtra("register") != null) {
             mBundle = intent.getBundleExtra("register")!!
             tempUsername = mBundle!!.getString("Username")!!
             tempPass = mBundle!!.getString("Password")!!
@@ -72,14 +80,14 @@ class MainActivity : AppCompatActivity() {
                 checkLogin = false
             }
 
-            if (username == "admin" && password == "admin" || (username == tempUsername && password == tempPass)){
+            if (username == "admin" && password == "admin" || (username == tempUsername && password == tempPass)) {
                 checkLogin = true
                 val db by lazy { UserDB(this@MainActivity) }
                 val userDao = db.userDao()
-                val user = userDao.checkUser(username,password)
-                if(user !=null){
+                val user = userDao.checkUser(username, password)
+                if (user != null) {
                     sharedPreferences.edit()
-                        .putInt("id",user.id)
+                        .putInt("id", user.id)
                         .apply()
                 }
 
@@ -87,15 +95,18 @@ class MainActivity : AppCompatActivity() {
 
                 val moveLogin = Intent(this@MainActivity, HomeActivity::class.java)
                 startActivity(moveLogin)
-            }else{
-                Snackbar.make(mainLayout, "Username atau Password Salah!", Snackbar.LENGTH_LONG).show()
+            } else {
+                Snackbar.make(mainLayout, "Username atau Password Salah!", Snackbar.LENGTH_LONG)
+                    .show()
 
             }
             if (!checkLogin) return@OnClickListener
 
-
-
         })
 
+
+
     }
+
+
 }
