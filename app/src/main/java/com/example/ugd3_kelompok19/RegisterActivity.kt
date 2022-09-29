@@ -168,7 +168,7 @@ class RegisterActivity : AppCompatActivity() {
         }
         val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
         val broadcastIntent: Intent = Intent(this, NotificationReceiver::class.java)
-        broadcastIntent.putExtra("toastMessage","Hello! "+binding.inputLayoutUsername.editText?.text.toString())
+        broadcastIntent.putExtra("toastMessage","Hello, Welcome to our Apps, "+binding.inputLayoutUsername.editText?.text.toString() + "!")
         val actionIntent = PendingIntent.getBroadcast(this, 0, broadcastIntent, PendingIntent.FLAG_UPDATE_CURRENT)
         val picture = BitmapFactory.decodeResource(resources, R.drawable.logo)
         val builder = NotificationCompat.Builder(this, REGISTER_ID_01)
