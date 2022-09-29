@@ -132,6 +132,8 @@ class EditActivity : AppCompatActivity() {
                         edit_tanggalPinjam.text.toString(),
                         edit_tanggalKembali.text.toString())
                 )
+                createNotificationChannels()
+                sendNotifications()
                 finish()
             }
         }
