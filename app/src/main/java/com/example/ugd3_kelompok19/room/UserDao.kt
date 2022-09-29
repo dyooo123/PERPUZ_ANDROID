@@ -2,7 +2,6 @@ package com.example.ugd3_kelompok19.room
 
 import androidx.room.*
 
-
 @Dao
 interface UserDao {
     @Insert
