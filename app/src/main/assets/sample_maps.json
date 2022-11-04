@@ -1,0 +1,25 @@
+{
+  "results": [
+    {
+      "geometry": {
+        "location": {
+          "lat": -7.777797,
+          "lng": 110.416729
+        }
+      },
+      "name": "Perpus Griya Kerinci",
+      "vicinity": "Jl. Tambak Bayan 11, Tambak Bayan, Caturtunggal, Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55281"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": -7.7755,
+          "lng": 110.416729
+        }
+      },
+      "name": "Perpus Motekar",
+      "vicinity": "Jl. Tambak Bayan 11, Tambak Bayan, Caturtunggal, Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55281"
+    }
+  ],
+  "status": "OK"
+}

@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/nav_wishlist"
-        android:name="com.example.ugd3_kelompok19.CollectionsFragment"
+        android:name="com.example.ugd3_kelompok19.LocationFragment"
         android:label="Wishlist"
         tools:layout="@layout/peminjam_fragment" />
 
@@ -27,5 +27,5 @@
         android:id="@+id/nav_collect"
         android:name="com.example.ugd3_kelompok19.ProfilFragment"
         android:label="Collections"
-        tools:layout="@layout/fragment_collections"/>
+        tools:layout="@layout/fragment_location"/>
 </navigation>

@@ -86,6 +86,7 @@ class EditActivity : AppCompatActivity() {
         }
     }
 
+
     fun setupView() {
         val intentType = intent.getIntExtra("intent_type", 0)
         when (intentType){

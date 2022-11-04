@@ -26,7 +26,7 @@ class HomeActivity : AppCompatActivity() {
         getSupportActionBar()?.hide()
         var bottomNavigationView: BottomNavigationView = findViewById(R.id.nav_view)
         val booksFragment = BooksFragment()
-        val collectionsFragment = CollectionsFragment()
+        val locationFragment = LocationFragment()
         val profilFragment = ProfilFragment()
         val peminjamFragment = PeminjamFragment()
 
@@ -38,7 +38,7 @@ class HomeActivity : AppCompatActivity() {
                     setThatFragments(booksFragment)
                 }
                 R.id.nav_collect ->{
-                    setThatFragments(collectionsFragment)
+                    setThatFragments(locationFragment)
                 }
                 R.id.nav_wishlist->{
                     setThatFragments(peminjamFragment)
