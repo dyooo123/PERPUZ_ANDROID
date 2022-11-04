@@ -13,13 +13,24 @@
     {
       "geometry": {
         "location": {
-          "lat": -7.7755,
-          "lng": 110.416729
+          "lat": -7.7694009571441365,
+          "lng": 110.40772584382636
         }
       },
-      "name": "Perpus Motekar",
-      "vicinity": "Jl. Tambak Bayan 11, Tambak Bayan, Caturtunggal, Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55281"
+      "name": "Perpus AU",
+      "vicinity": "Jl. Seturan, Kledokan, Caturtunggal, Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55281"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": -7.788810315790787,
+          "lng": 110.37866302120669
+        }
+      },
+      "name": "Perpus Coklat Impian",
+      "vicinity": "Jl. Mutiara No.1b, Klitren, Kec. Gondokusuman, Kota Yogyakarta, Daerah Istimewa Yogyakarta 55221"
     }
+
   ],
   "status": "OK"
 }

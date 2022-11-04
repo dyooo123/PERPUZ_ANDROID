@@ -1,5 +1,6 @@
 package com.example.ugd3_kelompok19
 
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.appcompat.app.AlertDialog
 import com.example.ugd3_kelompok19.databinding.FragmentProfilBinding
 import com.example.ugd3_kelompok19.room.UserDB
@@ -51,6 +53,13 @@ class ProfilFragment : Fragment() {
                     .show()
             }
         }
+
+        val camera: Button = view.findViewById(R.id.btnCamera)
+        camera.setOnClickListener{
+            val moveCamera = Intent(this@ProfilFragment.context, cameraActivity::class.java)
+            startActivity(moveCamera)
+        }
+
 
     }
 
