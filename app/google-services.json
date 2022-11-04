@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "910935982895",
+    "project_id": "ugd-kelompok19-d58ad",
+    "storage_bucket": "ugd-kelompok19-d58ad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:910935982895:android:f0e5e3ca9ff2a2350757da",
+        "android_client_info": {
+          "package_name": "com.example.ugd3_kelompok19"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "910935982895-sodd3psp9m55l52f7tcbonugahqh9ndg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBq9rlRLx5O3py-9HQro-74PJKJ4PZyKM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "910935982895-sodd3psp9m55l52f7tcbonugahqh9ndg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
