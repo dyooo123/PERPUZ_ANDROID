@@ -65,7 +65,7 @@ class HomeActivity : AppCompatActivity() {
         return true
     }
 
-    fun getSharedPreferences(): SharedPreferences? {
+    fun getSharedPreferences(): SharedPreferences {
         return sharedPreferences
     }
 

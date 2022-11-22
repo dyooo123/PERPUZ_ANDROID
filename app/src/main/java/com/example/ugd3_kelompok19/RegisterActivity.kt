@@ -27,8 +27,19 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
+import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.android.volley.AuthFailureError
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import com.example.ugd3_kelompok19.api.profilApi
+import com.example.ugd3_kelompok19.models.user
+import com.google.gson.Gson
+import org.json.JSONObject
+import java.nio.charset.StandardCharsets
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var inputusername: TextInputLayout
@@ -42,6 +53,7 @@ class RegisterActivity : AppCompatActivity() {
     private var binding1: ActivityRegisterBinding? = null
     private val REGISTER_ID_01 = "register_notification"
     private val notificationId1 = 101
+    private var queue: RequestQueue? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,7 +64,7 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(viewBinding)
         var checkLogin = true
 
-
+        queue = Volley.newRequestQueue(this)
         var userId: Int = 0
         val db by lazy { UserDB(this) }
         val userDao = db.userDao()
@@ -98,24 +110,25 @@ class RegisterActivity : AppCompatActivity() {
             }
 
             if (checkLogin == true) {
+                addUser(mBundle)
 
-                val user = User(0, username, email, password, tanggalLahir, noTelp)
-                userDao.addUser(user)
-
-                val moveRegister = Intent(this@RegisterActivity, MainActivity::class.java)
-                mBundle.putString(
-                    "Username",
-                    binding.inputLayoutUsername.getEditText()?.getText().toString()
-                )
-                mBundle.putString(
-                    "Password",
-                    binding.inputLayoutPassword.getEditText()?.getText().toString()
-                )
-                moveRegister.putExtra("register", mBundle)
-                startActivity(moveRegister)
-                binding1 = ActivityRegisterBinding.inflate(layoutInflater)
-                setContentView(binding1!!.root)
-
+//                val user = User(0, username, email, password, tanggalLahir, noTelp)
+//                userDao.addUser(user)
+//
+//                val moveRegister = Intent(this@RegisterActivity, MainActivity::class.java)
+//                mBundle.putString(
+//                    "Username",
+//                    binding.inputLayoutUsername.getEditText()?.getText().toString()
+//                )
+//                mBundle.putString(
+//                    "Password",
+//                    binding.inputLayoutPassword.getEditText()?.getText().toString()
+//                )
+//                moveRegister.putExtra("register", mBundle)
+//                startActivity(moveRegister)
+//                binding1 = ActivityRegisterBinding.inflate(layoutInflater)
+//                setContentView(binding1!!.root)
+//
                 createNotificationChannel()
                 sendNotification()
 
@@ -191,5 +204,75 @@ class RegisterActivity : AppCompatActivity() {
         with(NotificationManagerCompat.from(this)) {
             notify(notificationId1, builder.build())
         }
+    }
+    private fun addUser(mBundle: Bundle){
+
+        val users = user(0,
+        binding.inputLayoutUsername.getEditText()?.getText().toString(),
+        binding.inputLayoutPassword.getEditText()?.getText().toString(),
+        binding.inputLayoutEmail.getEditText()?.getText().toString(),
+        binding.inputLayoutTanggalLahir.getEditText()?.getText().toString(),
+        binding.inputLayoutNoTelp.getEditText()?.getText().toString())
+
+        val stringRequest: StringRequest = object: StringRequest(Method.POST, profilApi.REG, Response.Listener { response ->
+                val gson = Gson()
+                val user = gson.fromJson(response, user::class.java)
+
+                if (user != null)
+                    Toast.makeText(
+                        this@RegisterActivity,
+                        "Data Berhasil Ditambahkan",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                val moveRegister = Intent(this@RegisterActivity, MainActivity::class.java)
+                mBundle.putString(
+                    "username",
+                    binding.inputLayoutUsername.getEditText()?.getText().toString()
+                )
+                mBundle.putString(
+                    "passwordb",
+                    binding.inputLayoutPassword.getEditText()?.getText().toString()
+
+                )
+                moveRegister.putExtra("register", mBundle)
+                startActivity(moveRegister)
+                createNotificationChannel()
+                sendNotification()
+//                setLoading(false)
+            }, Response.ErrorListener { error->
+//                setLoading(false)
+                try{
+                    val responseBody = String(error.networkResponse.data, StandardCharsets.UTF_8)
+                    val errors = JSONObject(responseBody)
+                    Toast.makeText(
+                        this@RegisterActivity,
+                        errors.getString("message"),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }catch (e:Exception){
+                    Toast.makeText(this@RegisterActivity, e.message, Toast.LENGTH_SHORT).show()
+                }
+            }) {
+                @Throws(AuthFailureError::class)
+                override fun getHeaders(): MutableMap<String, String> {
+                    val headers = HashMap<String, String>()
+                    headers["Accept"] = "application/json"
+                    return headers
+                }
+
+                @Throws(AuthFailureError::class)
+                override fun getBody(): ByteArray {
+                    val gson = Gson()
+                    val requestBody = gson.toJson(users)
+                    return requestBody.toByteArray(StandardCharsets.UTF_8)
+                }
+
+                override fun getBodyContentType(): String {
+                    return "application/json"
+                }
+            }
+        // Menambahkan request ke request queue
+        queue!!.add(stringRequest)
     }
 }
