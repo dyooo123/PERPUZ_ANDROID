@@ -28,7 +28,7 @@
             android:name=".PeminjamActivity"
             android:exported="false" />
         <activity
-            android:name=".EditActivity"
+            android:name=".AddEditActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
