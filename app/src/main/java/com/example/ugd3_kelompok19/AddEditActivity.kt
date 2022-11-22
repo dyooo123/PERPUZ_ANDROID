@@ -51,19 +51,19 @@ class AddEditActivity : AppCompatActivity() {
         val id = intent.getIntExtra("id", -1)
         if(id== -1){
             tvTitle.setText("Tambah Peminjam")
-            btnSave.setOnClickListener { createMahasiswa() }
+            btnSave.setOnClickListener { createPeminjam() }
         }else{
             tvTitle.setText("Edit Peminjam")
             getPeminjamById(id)
 
-            btnSave.setOnClickListener { updateMahasiswa(id) }
+            btnSave.setOnClickListener { updatePeminjam(id) }
         }
 
     }
 
 
     private fun getPeminjamById(id: Int){
-        // Fungsi untuk menampilkan data mahasiswa berdasarkan id
+        // Fungsi untuk menampilkan data  berdasarkan id
         setLoading(true)
         val stringRequest: StringRequest =
             object : StringRequest(Method.GET, peminjamApi.GET_BY_ID_URL + id, Response.Listener { response ->
@@ -106,7 +106,7 @@ class AddEditActivity : AppCompatActivity() {
         queue!!.add(stringRequest)
     }
 
-    private fun createMahasiswa(){
+    private fun createPeminjam(){
         setLoading(true)
 
         val peminjam = Peminjam(0,
@@ -166,7 +166,7 @@ class AddEditActivity : AppCompatActivity() {
         queue!!.add(stringRequest)
     }
 
-    private fun updateMahasiswa(id: Int){
+    private fun updatePeminjam(id: Int){
         setLoading(true)
 
         val peminjam = Peminjam(0,
