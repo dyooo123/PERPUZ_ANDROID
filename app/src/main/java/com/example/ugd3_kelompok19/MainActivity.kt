@@ -37,8 +37,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mainLayout: ConstraintLayout
     private var queue: RequestQueue? = null
     lateinit  var mBundle: Bundle
-    var tempUsername: String = "admin"
-    var tempPass: String = "admin"
+    var tempUsername: String? = null
+    var tempPass: String? = null
 
     private lateinit var sharedPreferences: SharedPreferences
 

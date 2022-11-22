@@ -73,35 +73,34 @@ class RegisterActivity : AppCompatActivity() {
             val mBundle = Bundle()
             val intent = Intent(this@RegisterActivity, MainActivity::class.java)
 
-            val username: String = binding.inputLayoutUsername.getEditText()?.getText().toString()
-            val password: String = binding.inputLayoutPassword.getEditText()?.getText().toString()
-            val email: String = binding.inputLayoutEmail.getEditText()?.getText().toString()
-            val tanggalLahir: String =
-                binding.inputLayoutTanggalLahir.getEditText()?.getText().toString()
-            val noTelp: String = binding.inputLayoutNoTelp.getEditText()?.getText().toString()
+            val username: String = binding.etUsername.getEditText()?.getText().toString()
+            val password: String = binding.etPassword.getEditText()?.getText().toString()
+            val email: String = binding.etEmail.getEditText()?.getText().toString()
+            val tanggalLahir: String = binding.etTanggalLahir.getEditText()?.getText().toString()
+            val noTelp: String = binding.etNoTelp.getEditText()?.getText().toString()
 
             if (username.isEmpty()) {
-                binding.inputLayoutUsername.setError("Username must be filled with text")
+                binding.etUsername.setError("Username must be filled with text")
                 checkLogin = false
             }
 
             if (password.isEmpty()) {
-                binding.inputLayoutPassword.setError("Password must be filled with text")
+                binding.etPassword.setError("Password must be filled with text")
                 checkLogin = false
             }
 
             if (email.isEmpty()) {
-                binding.inputLayoutEmail.setError("Email must be filled with text")
+                binding.etEmail.setError("Email must be filled with text")
                 checkLogin = false
             }
 
             if (tanggalLahir.isEmpty()) {
-                binding.inputLayoutTanggalLahir.setError("Tangal Lahir must be filled with text")
+                binding.etTanggalLahir.setError("Tangal Lahir must be filled with text")
                 checkLogin = false
             }
 
             if (noTelp.isEmpty()) {
-                binding.inputLayoutNoTelp.setError("Nomor Telepon must be filled with text")
+                binding.etNoTelp.setError("Nomor Telepon must be filled with text")
                 checkLogin = false
             }
 
@@ -137,17 +136,17 @@ class RegisterActivity : AppCompatActivity() {
         })
 
         binding.btnReset.setOnClickListener {
-            binding.inputLayoutUsername.editText?.setText("")
-            binding.inputLayoutPassword.editText?.setText("")
-            binding.inputLayoutEmail.editText?.setText("")
-            binding.inputLayoutNoTelp.editText?.setText("")
-            binding.inputLayoutTanggalLahir.editText?.setText("")
+            binding.etUsername.editText?.setText("")
+            binding.etPassword.editText?.setText("")
+            binding.etEmail.editText?.setText("")
+            binding.etNoTelp.editText?.setText("")
+            binding.etTanggalLahir.editText?.setText("")
 
-            binding.inputLayoutUsername.setError("")
-            binding.inputLayoutPassword.setError("")
-            binding.inputLayoutEmail.setError("")
-            binding.inputLayoutNoTelp.setError("")
-            binding.inputLayoutTanggalLahir.setError("")
+            binding.etUsername.setError("")
+            binding.etPassword.setError("")
+            binding.etEmail.setError("")
+            binding.etNoTelp.setError("")
+            binding.etTanggalLahir.setError("")
 
         }
 
@@ -181,7 +180,7 @@ class RegisterActivity : AppCompatActivity() {
         }
         val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
         val broadcastIntent: Intent = Intent(this, NotificationReceiver::class.java)
-        broadcastIntent.putExtra("toastMessage","Hello, Welcome to our Apps, "+binding.inputLayoutUsername.editText?.text.toString() + "!")
+        broadcastIntent.putExtra("toastMessage","Hello, Welcome to our Apps, "+binding.etUsername.editText?.text.toString() + "!")
         val actionIntent = PendingIntent.getBroadcast(this, 0, broadcastIntent, PendingIntent.FLAG_UPDATE_CURRENT)
         val picture = BitmapFactory.decodeResource(resources, R.drawable.logo)
         val builder = NotificationCompat.Builder(this, REGISTER_ID_01)
@@ -208,11 +207,11 @@ class RegisterActivity : AppCompatActivity() {
     private fun addUser(mBundle: Bundle){
 
         val users = user(0,
-        binding.inputLayoutUsername.getEditText()?.getText().toString(),
-        binding.inputLayoutPassword.getEditText()?.getText().toString(),
-        binding.inputLayoutEmail.getEditText()?.getText().toString(),
-        binding.inputLayoutTanggalLahir.getEditText()?.getText().toString(),
-        binding.inputLayoutNoTelp.getEditText()?.getText().toString())
+        binding.etUsername.getEditText()?.getText().toString(),
+        binding.etPassword.getEditText()?.getText().toString(),
+        binding.etEmail.getEditText()?.getText().toString(),
+        binding.etTanggalLahir.getEditText()?.getText().toString(),
+        binding.etNoTelp.getEditText()?.getText().toString())
 
         val stringRequest: StringRequest = object: StringRequest(Method.POST, profilApi.REG, Response.Listener { response ->
                 val gson = Gson()
@@ -228,11 +227,11 @@ class RegisterActivity : AppCompatActivity() {
                 val moveRegister = Intent(this@RegisterActivity, MainActivity::class.java)
                 mBundle.putString(
                     "username",
-                    binding.inputLayoutUsername.getEditText()?.getText().toString()
+                    binding.etUsername.getEditText()?.getText().toString()
                 )
                 mBundle.putString(
-                    "passwordb",
-                    binding.inputLayoutPassword.getEditText()?.getText().toString()
+                    "password",
+                    binding.etPassword.getEditText()?.getText().toString()
 
                 )
                 moveRegister.putExtra("register", mBundle)
