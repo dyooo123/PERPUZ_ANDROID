@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import android.widget.*
+import androidx.core.content.res.ResourcesCompat
 import com.android.volley.AuthFailureError
 import com.android.volley.RequestQueue
 import com.android.volley.Response
@@ -16,6 +17,8 @@ import com.example.ugd3_kelompok19.models.Peminjam
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_add_edit.*
 import org.json.JSONObject
+import www.sanju.motiontoast.MotionToast
+import www.sanju.motiontoast.MotionToastStyle
 import java.nio.charset.StandardCharsets
 
 class AddEditActivity : AppCompatActivity() {
@@ -122,7 +125,13 @@ class AddEditActivity : AppCompatActivity() {
                 val peminjam = gson.fromJson(response, Peminjam::class.java)
 
                 if(peminjam!=null)
-                    Toast.makeText(this@AddEditActivity, "Data Berhasil Ditambahkan", Toast.LENGTH_SHORT).show()
+                    MotionToast.createColorToast(this,
+                        "Add Peminjam",
+                        "Peminjam ditambahkan!",
+                        MotionToastStyle.SUCCESS,
+                        MotionToast.GRAVITY_BOTTOM,
+                        MotionToast.LONG_DURATION,
+                        ResourcesCompat.getFont(this, www.sanju.motiontoast.R.font.helvetica_regular))
 
                 val returnIntent = Intent()
                 setResult(RESULT_OK, returnIntent)
@@ -184,7 +193,12 @@ class AddEditActivity : AppCompatActivity() {
                 val peminjam = gson.fromJson(response, Peminjam::class.java)
 
                 if(peminjam != null)
-                    Toast.makeText(this@AddEditActivity, "Data Berhasil Diupdate",Toast.LENGTH_SHORT).show()
+                    MotionToast.createColorToast(this,"Update Peminjam",
+                        "Peminjam terupdate!",
+                        MotionToastStyle.INFO,
+                        MotionToast.GRAVITY_BOTTOM,
+                        MotionToast.LONG_DURATION,
+                        ResourcesCompat.getFont(this, www.sanju.motiontoast.R.font.helvetica_regular))
                 val returnIntent = Intent()
                 setResult(RESULT_OK, returnIntent)
                 finish()

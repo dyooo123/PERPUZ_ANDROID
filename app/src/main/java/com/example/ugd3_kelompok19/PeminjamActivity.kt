@@ -8,6 +8,7 @@ import android.view.WindowManager
 import android.widget.LinearLayout
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -22,6 +23,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_pinjam.*
 import org.json.JSONObject
+import www.sanju.motiontoast.MotionToast
+import www.sanju.motiontoast.MotionToastStyle
 import java.nio.charset.StandardCharsets
 
 class PeminjamActivity : AppCompatActivity() {
@@ -135,7 +138,13 @@ class PeminjamActivity : AppCompatActivity() {
                 val gson = Gson()
                 var peminjam = gson.fromJson(response, Peminjam::class.java)
                 if(peminjam != null)
-                    Toast.makeText(this@PeminjamActivity, "Data Berhasil Dihapus",Toast.LENGTH_SHORT).show()
+                    MotionToast.createColorToast(this,
+                        "Delete Success",
+                        "Data telah terhapus!",
+                        MotionToastStyle.SUCCESS,
+                        MotionToast.GRAVITY_BOTTOM,
+                        MotionToast.LONG_DURATION,
+                        ResourcesCompat.getFont(this, www.sanju.motiontoast.R.font.helvetica_regular))
                 allPeminjam()
             }, Response.ErrorListener{ error->
                 setLoading(false)

@@ -19,6 +19,7 @@ import android.os.Build
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.res.ResourcesCompat
 import com.android.volley.AuthFailureError
 import com.android.volley.RequestQueue
 import com.android.volley.Response
@@ -29,6 +30,8 @@ import com.example.ugd3_kelompok19.databinding.ActivityMainBinding
 import com.example.ugd3_kelompok19.models.user
 import com.google.gson.Gson
 import org.json.JSONObject
+import www.sanju.motiontoast.MotionToast
+import www.sanju.motiontoast.MotionToastStyle
 import java.nio.charset.StandardCharsets
 
 class MainActivity : AppCompatActivity() {
@@ -143,7 +146,13 @@ class MainActivity : AppCompatActivity() {
                     var resJO = JSONObject(response.toString())
                     val  userobj = resJO.getJSONObject("data")
 
-                    Toast.makeText(this@MainActivity, "Berhasil Login", Toast.LENGTH_SHORT).show()
+                    MotionToast.createColorToast(this,
+                        "Login Success",
+                        "Welcome To Our Application!",
+                        MotionToastStyle.SUCCESS,
+                        MotionToast.GRAVITY_BOTTOM,
+                        MotionToast.LONG_DURATION,
+                        ResourcesCompat.getFont(this, www.sanju.motiontoast.R.font.helvetica_regular))
                     val intent = Intent(this@MainActivity, HomeActivity::class.java)
                     sharedPreferences.edit()
                         .putInt("id",userobj.getInt("id"))

@@ -78,5 +78,22 @@ dependencies {
     // Gson
     implementation 'com.google.code.gson:gson:2.8.8'
 
+    //implementasi PDF Library IText
+    implementation 'com.itextpdf:itext7-core:7.1.13'
 
+    //implementasi QR code Scanner
+    implementation 'com.github.yuriy-budiyev:code-scanner:2.3.2'
+
+    //implementasi QR CODE GENERATE
+    implementation 'com.github.kenglxn.qrgen:android:2.6.0'
+    implementation 'com.google.mlkit:barcode-scanning:17.0.2'
+
+    //implementasi PDF Librarty OpenPDF
+    implementation 'com.github.librepdf:openpdf:1.3.29'
+
+    implementation 'com.github.Spikeysanju:MotionToast:1.4'
+
+    implementation 'nl.joery.animatedbottombar:library:1.1.0'
+
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
 }

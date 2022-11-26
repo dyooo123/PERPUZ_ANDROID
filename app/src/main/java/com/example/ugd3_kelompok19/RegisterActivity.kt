@@ -30,6 +30,7 @@ import android.os.Build
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.res.ResourcesCompat
 import com.android.volley.AuthFailureError
 import com.android.volley.RequestQueue
 import com.android.volley.Response
@@ -39,6 +40,8 @@ import com.example.ugd3_kelompok19.api.profilApi
 import com.example.ugd3_kelompok19.models.user
 import com.google.gson.Gson
 import org.json.JSONObject
+import www.sanju.motiontoast.MotionToast
+import www.sanju.motiontoast.MotionToastStyle
 import java.nio.charset.StandardCharsets
 
 class RegisterActivity : AppCompatActivity() {
@@ -110,6 +113,7 @@ class RegisterActivity : AppCompatActivity() {
 
             if (checkLogin == true) {
                 addUser(mBundle)
+
 
 //                val user = User(0, username, email, password, tanggalLahir, noTelp)
 //                userDao.addUser(user)
@@ -218,11 +222,13 @@ class RegisterActivity : AppCompatActivity() {
                 val user = gson.fromJson(response, user::class.java)
 
                 if (user != null)
-                    Toast.makeText(
-                        this@RegisterActivity,
-                        "Data Berhasil Ditambahkan",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    MotionToast.createColorToast(this,
+                        "Register Completed!",
+                        "Akun anda terdaftar!",
+                        MotionToastStyle.SUCCESS,
+                        MotionToast.GRAVITY_BOTTOM,
+                        MotionToast.LONG_DURATION,
+                        ResourcesCompat.getFont(this, www.sanju.motiontoast.R.font.helvetica_regular))
 
                 val moveRegister = Intent(this@RegisterActivity, MainActivity::class.java)
                 mBundle.putString(
@@ -238,9 +244,7 @@ class RegisterActivity : AppCompatActivity() {
                 startActivity(moveRegister)
                 createNotificationChannel()
                 sendNotification()
-//                setLoading(false)
             }, Response.ErrorListener { error->
-//                setLoading(false)
                 try{
                     val responseBody = String(error.networkResponse.data, StandardCharsets.UTF_8)
                     val errors = JSONObject(responseBody)

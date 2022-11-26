@@ -1,16 +1,17 @@
 package com.example.ugd3_kelompok19
 
-
-
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.ugd3_kelompok19.databinding.ActivityHomeBinding
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.activity_home.*
+import nl.joery.animatedbottombar.AnimatedBottomBar
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var sharedPreferences: SharedPreferences
@@ -24,37 +25,42 @@ class HomeActivity : AppCompatActivity() {
         sharedPreferences = getSharedPreferences("login",Context.MODE_PRIVATE)
 
         getSupportActionBar()?.hide()
-        var bottomNavigationView: BottomNavigationView = findViewById(R.id.nav_view)
+
         val booksFragment = BooksFragment()
         val locationFragment = LocationFragment()
         val profilFragment = ProfilFragment()
         val peminjamFragment = PeminjamFragment()
 
         setThatFragments(booksFragment)
+        bottom_navigation.setOnTabSelectListener(object : AnimatedBottomBar.OnTabSelectListener {
+            override fun onTabSelected(
+                lastIndex: Int,
+                lastTab: AnimatedBottomBar.Tab?,
+                newIndex: Int,
+                newTab: AnimatedBottomBar.Tab
+            ) {
 
-        bottomNavigationView.setOnItemSelectedListener {
-            when(it.itemId){
-                R.id.nav_books ->{
-                    setThatFragments(booksFragment)
+                //redirecting fragments
+                when(newIndex){
+                    0 -> setThatFragments(booksFragment);
+                    1 -> setThatFragments(locationFragment);
+                    2 -> setThatFragments(peminjamFragment);
+                    3 -> setThatFragments(profilFragment);
                 }
-                R.id.nav_collect ->{
-                    setThatFragments(locationFragment)
-                }
-                R.id.nav_wishlist->{
-                    setThatFragments(peminjamFragment)
-                }
-                R.id.nav_profil->{
-                    setThatFragments(profilFragment)
-                }
+                Log.d("bottom_bar", "Selected index: $newIndex, title: ${newTab.title}")
             }
-            true
-        }
+
+            override fun onTabReselected(index: Int, tab: AnimatedBottomBar.Tab) {
+                Log.d("bottom_bar", "Reselected index: $index, title: ${tab.title}")
+            }
+        });
 
     }
 
+
     private fun setThatFragments(fragment : Fragment){
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.nav_host_fragment_activity_home,fragment)
+            replace(R.id.fragment_container,fragment)
             commit()
         }
     }
