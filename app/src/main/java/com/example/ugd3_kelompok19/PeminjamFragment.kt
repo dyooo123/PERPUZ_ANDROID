@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.peminjam_fragment.*
 
 
 class PeminjamFragment : Fragment() {
@@ -28,6 +29,11 @@ class PeminjamFragment : Fragment() {
         btnAddPeminjam.setOnClickListener(View.OnClickListener {
             val movePeminjam = Intent(this@PeminjamFragment.context, PeminjamActivity::class.java)
             startActivity(movePeminjam)
+        })
+
+        btnQrScanner.setOnClickListener(View.OnClickListener {
+            val moveQR = Intent(this@PeminjamFragment.context, qrScanner::class.java)
+            startActivity(moveQR)
         })
     }
 }
