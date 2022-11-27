@@ -7,12 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.peminjam_fragment.*
 
 
 class PeminjamFragment : Fragment() {
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,5 +36,24 @@ class PeminjamFragment : Fragment() {
             val moveQR = Intent(this@PeminjamFragment.context, qrScanner::class.java)
             startActivity(moveQR)
         })
+
+        val url = "https://picsum.photos/300"
+
+        btnImage.setOnClickListener(View.OnClickListener {
+
+            val url = "https://picsum.photos/300"
+
+            Glide.with(this)
+                .load(url)
+                .fitCenter()
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .into(imageView3)
+        })
     }
+
+
+
+
+
 }

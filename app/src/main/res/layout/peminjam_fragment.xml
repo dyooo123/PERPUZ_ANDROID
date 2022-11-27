@@ -8,6 +8,31 @@
     android:background="@color/darkBlue"
     tools:context=".PeminjamFragment">
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="269dp"
+        android:layout_height="238dp"
+        android:layout_marginBottom="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:src="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/btnImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:backgroundTint="@color/softYellow"
+        android:text="Tap to change Image"
+        android:textColor="@color/darkBlue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.157"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.711" />
+
     <Button
         android:id="@+id/btnQrScanner"
         android:layout_width="match_parent"
@@ -18,9 +43,10 @@
         android:textColor="@color/darkBlue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnImage"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.8" />
+        app:layout_constraintVertical_bias="0.812" />
+
     <Button
         android:id="@+id/btnAddPeminjam"
         android:layout_width="match_parent"
@@ -35,4 +61,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/btnQrScanner"
       />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
