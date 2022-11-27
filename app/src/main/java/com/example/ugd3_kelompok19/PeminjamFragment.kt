@@ -37,7 +37,6 @@ class PeminjamFragment : Fragment() {
             startActivity(moveQR)
         })
 
-        val url = "https://picsum.photos/300"
 
         btnImage.setOnClickListener(View.OnClickListener {
 
