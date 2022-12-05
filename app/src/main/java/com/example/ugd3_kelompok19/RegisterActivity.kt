@@ -337,7 +337,7 @@ class RegisterActivity : AppCompatActivity() {
         val group = Paragraph(
             """
                                     Berikut adalah
-                                    Nama Pengguna UAJY 2022/2023
+                                    Nama Pengguna Aplikasi PERPUZ
                                 """.trimIndent()
         ).setTextAlignment(TextAlignment.CENTER).setFontSize(12f)
 
