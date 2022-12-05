@@ -37,13 +37,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".qrScannerActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".cameraActivity"
             android:exported="false">
             <meta-data
@@ -55,7 +48,7 @@
             android:exported="false" />
         <activity
             android:name=".AddEditActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />

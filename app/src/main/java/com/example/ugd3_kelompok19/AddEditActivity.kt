@@ -111,68 +111,94 @@ class AddEditActivity : AppCompatActivity() {
 
     private fun createPeminjam(){
         setLoading(true)
+        if(etNama!!.text.toString().isEmpty()) {
+            Toast.makeText(this@AddEditActivity, "Nama tidak boleh kosong!", Toast.LENGTH_SHORT).show()
+        }
+        else if(etAlamat!!.text.toString().isEmpty()) {
+            Toast.makeText(this@AddEditActivity, "Alamat tidak boleh kosong!", Toast.LENGTH_SHORT).show()
+        }
+        else if(etJudul!!.text.toString().isEmpty()) {
+            Toast.makeText(this@AddEditActivity, "Judul Buku tidak boleh kosong!", Toast.LENGTH_SHORT).show()
+        }
+        else if(etPinjam!!.text.toString().isEmpty()) {
+            Toast.makeText(this@AddEditActivity, "Tanggal Peminjaman tidak boleh kosong!", Toast.LENGTH_SHORT)
+                .show()
+        }
+        else if(etKembali!!.text.toString().isEmpty()) {
+            Toast.makeText(this@AddEditActivity, "Tanggal Pengembalian tidak boleh kosong!", Toast.LENGTH_SHORT).show()
+        }else {
+            val peminjam = Peminjam(
+                0,
+                etNama!!.text.toString(),
+                etAlamat!!.text.toString(),
+                etJudul!!.text.toString(),
+                etPinjam!!.text.toString(),
+                etKembali!!.text.toString()
+            )
+            val stringRequest: StringRequest =
+                object :
+                    StringRequest(Method.POST, peminjamApi.ADD_URL, Response.Listener { response ->
+                        val gson = Gson()
+                        val peminjam = gson.fromJson(response, Peminjam::class.java)
 
-        val peminjam = Peminjam(0,
-            etNama!!.text.toString(),
-            etAlamat!!.text.toString(),
-            etJudul!!.text.toString(),
-            etPinjam!!.text.toString(),
-            etKembali!!.text.toString()
-        )
-        val stringRequest: StringRequest =
-            object: StringRequest(Method.POST, peminjamApi.ADD_URL, Response.Listener {response->
-                val gson = Gson()
-                val peminjam = gson.fromJson(response, Peminjam::class.java)
+                        if (peminjam != null)
+                            MotionToast.createColorToast(
+                                this,
+                                "Add Peminjam",
+                                "Peminjam ditambahkan!",
+                                MotionToastStyle.SUCCESS,
+                                MotionToast.GRAVITY_BOTTOM,
+                                MotionToast.LONG_DURATION,
+                                ResourcesCompat.getFont(
+                                    this,
+                                    www.sanju.motiontoast.R.font.helvetica_regular
+                                )
+                            )
 
-                if(peminjam!=null)
-                    MotionToast.createColorToast(this,
-                        "Add Peminjam",
-                        "Peminjam ditambahkan!",
-                        MotionToastStyle.SUCCESS,
-                        MotionToast.GRAVITY_BOTTOM,
-                        MotionToast.LONG_DURATION,
-                        ResourcesCompat.getFont(this, www.sanju.motiontoast.R.font.helvetica_regular))
+                        val returnIntent = Intent()
+                        setResult(RESULT_OK, returnIntent)
+                        finish()
 
-                val returnIntent = Intent()
-                setResult(RESULT_OK, returnIntent)
-                finish()
+                        setLoading(false)
+                    }, Response.ErrorListener { error ->
+                        setLoading(false)
+                        try {
+                            val responseBody =
+                                String(error.networkResponse.data, StandardCharsets.UTF_8)
+                            val errors = JSONObject(responseBody)
+                            Toast.makeText(
+                                this@AddEditActivity,
+                                errors.getString("message"),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } catch (e: Exception) {
+                            Toast.makeText(this@AddEditActivity, e.message, Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                    }) {
+                    @Throws(AuthFailureError::class)
+                    override fun getHeaders(): MutableMap<String, String> {
+                        val headers = HashMap<String, String>()
+                        headers["Accept"] = "application/json"
+                        return headers
 
-                setLoading(false)
-            }, Response.ErrorListener { error->
-                setLoading(false)
-                try{
-                    val responseBody = String(error.networkResponse.data, StandardCharsets.UTF_8)
-                    val errors = JSONObject(responseBody)
-                    Toast.makeText(
-                        this@AddEditActivity,
-                        errors.getString("message"),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }catch (e:Exception){
-                    Toast.makeText(this@AddEditActivity, e.message, Toast.LENGTH_SHORT).show()
+                    }
+
+                    @Throws(AuthFailureError::class)
+                    override fun getBody(): ByteArray {
+                        val gson = Gson()
+                        val requestBody = gson.toJson(peminjam)
+                        return requestBody.toByteArray(StandardCharsets.UTF_8)
+                    }
+
+                    override fun getBodyContentType(): String {
+                        return "application/json"
+                    }
                 }
-            }) {
-                @Throws(AuthFailureError::class)
-                override fun getHeaders(): MutableMap<String, String> {
-                    val headers = HashMap<String, String>()
-                    headers["Accept"] = "application/json"
-                    return headers
-
-                }
-
-                @Throws(AuthFailureError::class)
-                override fun getBody(): ByteArray {
-                    val gson = Gson()
-                    val requestBody = gson.toJson(peminjam)
-                    return requestBody.toByteArray(StandardCharsets.UTF_8)
-                }
-
-                override fun getBodyContentType(): String {
-                    return "application/json"
-                }
-            }
-        // Menambahkan request ke request queue
-        queue!!.add(stringRequest)
+            // Menambahkan request ke request queue
+            queue!!.add(stringRequest)
+        }
+        setLoading(false)
     }
 
     private fun updatePeminjam(id: Int){
