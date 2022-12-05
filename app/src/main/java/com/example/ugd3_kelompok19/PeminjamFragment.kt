@@ -9,7 +9,6 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.peminjam_fragment.*
 
 
@@ -50,9 +49,4 @@ class PeminjamFragment : Fragment() {
                 .into(imageView3)
         })
     }
-
-
-
-
-
 }
