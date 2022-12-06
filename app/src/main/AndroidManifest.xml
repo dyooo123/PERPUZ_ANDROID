@@ -45,20 +45,20 @@
         </activity>
         <activity
             android:name=".PeminjamActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".AddEditActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".HomeActivity"
             android:exported="false"
             android:label="@string/title_activity_home" />
         <activity
             android:name=".RegisterActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".SplashScreen"
             android:exported="true">
