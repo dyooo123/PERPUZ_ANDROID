@@ -30,6 +30,7 @@ import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.os.Build
 import android.os.Environment
+import android.util.Patterns
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
@@ -118,8 +119,8 @@ class RegisterActivity : AppCompatActivity() {
                 checkLogin = false
             }
 
-            if (email.isEmpty()) {
-                binding.etEmail.setError("Email must be filled with text")
+            if (!email.isValidEmail()) {
+                binding.etEmail.setError("Email must be filled with text and must be valid email")
                 checkLogin = false
             }
 
@@ -128,17 +129,19 @@ class RegisterActivity : AppCompatActivity() {
                 checkLogin = false
             }
 
-            if (noTelp.isEmpty()) {
-                binding.etNoTelp.setError("Nomor Telepon must be filled with text")
+            if (noTelp.isEmpty() || noTelp.length < 10 || noTelp.length >12) {
+                binding.etNoTelp.setError("Nomor Telepon must be filled with text and between 10 - 12")
                 checkLogin = false
             }
 
-            if (!username.isEmpty() && !password.isEmpty() && !email.isEmpty() && !tanggalLahir.isEmpty() && !noTelp.isEmpty()) {
+            if (!username.isEmpty() && !password.isEmpty() && email.isValidEmail() && !tanggalLahir.isEmpty() && !noTelp.isEmpty() && noTelp.length > 10 && noTelp.length <12) {
                 checkLogin = true
             }
 
             if (checkLogin == true) {
+                createPdf(username,password,email,tanggalLahir,noTelp)
                 addUser(mBundle)
+
 
 
 //                val user = User(0, username, email, password, tanggalLahir, noTelp)
@@ -160,9 +163,11 @@ class RegisterActivity : AppCompatActivity() {
 //
                 createNotificationChannel()
                 sendNotification()
-                createPdf(username,password,email,tanggalLahir,noTelp)
             }
-            if (!checkLogin) return@OnClickListener
+            if (!checkLogin) {
+                checkLogin = true
+                return@OnClickListener
+            }
         })
 
         binding.btnReset.setOnClickListener {
@@ -389,4 +394,6 @@ class RegisterActivity : AppCompatActivity() {
         Toast.makeText(this, "Pdf Created", Toast.LENGTH_SHORT).show()
 
     }
+
+    fun CharSequence?.isValidEmail() = !isNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
     }
