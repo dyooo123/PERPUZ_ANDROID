@@ -30,6 +30,7 @@ class HomeActivity : AppCompatActivity() {
         val locationFragment = LocationFragment()
         val profilFragment = ProfilFragment()
         val peminjamFragment = PeminjamFragment()
+        val staffFragment = StaffFragment()
 
         setThatFragments(booksFragment)
         bottom_navigation.setOnTabSelectListener(object : AnimatedBottomBar.OnTabSelectListener {
@@ -46,6 +47,7 @@ class HomeActivity : AppCompatActivity() {
                     1 -> setThatFragments(locationFragment);
                     2 -> setThatFragments(peminjamFragment);
                     3 -> setThatFragments(profilFragment);
+                    4 -> setThatFragments(staffFragment);
                 }
                 Log.d("bottom_bar", "Selected index: $newIndex, title: ${newTab.title}")
             }
@@ -74,6 +76,5 @@ class HomeActivity : AppCompatActivity() {
     fun getSharedPreferences(): SharedPreferences {
         return sharedPreferences
     }
-
 
 }

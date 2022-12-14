@@ -44,10 +44,16 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".StaffActivity"
+            android:exported="true" />
+        <activity
             android:name=".PeminjamActivity"
             android:exported="true" />
         <activity
             android:name=".AddEditActivity"
+            android:exported="true" />
+        <activity
+            android:name=".AddEditStaffActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
