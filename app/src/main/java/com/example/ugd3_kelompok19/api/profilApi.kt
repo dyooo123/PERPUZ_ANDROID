@@ -2,7 +2,7 @@ package com.example.ugd3_kelompok19.api
 
 class profilApi {
     companion object{
-        val BASE_URL ="http://192.168.12.167/TUBES_Kelompok19_PERPUZ/public/api/"
+        val BASE_URL ="https://perpuz.my.id/api/"
 
         val GET_BY_ID_URL = BASE_URL + "profil/"
         val UPDATE_URL = BASE_URL + "profil/"

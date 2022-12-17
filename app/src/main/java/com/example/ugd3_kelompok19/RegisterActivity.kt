@@ -139,9 +139,8 @@ class RegisterActivity : AppCompatActivity() {
             }
 
             if (checkLogin == true) {
-                createPdf(username,password,email,tanggalLahir,noTelp)
+                //createPdf(username,password,email,tanggalLahir,noTelp)
                 addUser(mBundle)
-
 
 
 //                val user = User(0, username, email, password, tanggalLahir, noTelp)
@@ -163,6 +162,7 @@ class RegisterActivity : AppCompatActivity() {
 //
                 createNotificationChannel()
                 sendNotification()
+
             }
             if (!checkLogin) {
                 checkLogin = true

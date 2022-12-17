@@ -110,4 +110,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     // Optional -- UI testing with UI Automator
     androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
+    //Library Neumorphism
+    implementation 'com.github.fornewid:neumorphism:0.3.0'
+    implementation("androidx.multidex:multidex:2.0.1")
 }
